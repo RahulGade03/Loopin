@@ -88,7 +88,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-6xl ml-65 mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Profile header */}
       <div className="flex flex-col sm:flex-row items-center gap-6 border-b pb-8 mb-10">
         <Avatar className="w-28 h-28 sm:w-32 sm:h-32 rounded-full ring-4 ring-offset-2 ring-pink-400 shadow-md overflow-hidden">
