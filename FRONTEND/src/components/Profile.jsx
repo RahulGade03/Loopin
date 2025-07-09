@@ -44,7 +44,7 @@ const Profile = () => {
   const handleFollow = async () => {
     // console.log(userProfile);
     const res = await fetch(
-      `http://localhost:8000/api/v1/user/followorunfollow/${userProfile._id}`,
+      `https://loopin-839q.onrender.com/api/v1/user/followorunfollow/${userProfile._id}`,
       {
         method: 'POST',
         credentials: 'include',
@@ -75,7 +75,7 @@ const Profile = () => {
 
   const handleBookmark = async () => {
     setActiveTab('bookmarks');
-    const res = await fetch("http://localhost:8000/api/v1/post/allBookmarks", {
+    const res = await fetch("https://loopin-839q.onrender.com/api/v1/post/allBookmarks", {
       credentials: 'include',
     });
     const data = await res.json();

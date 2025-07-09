@@ -29,7 +29,7 @@ app.use (express.json());
 app.use (cookieParser());
 app.use (express.urlencoded({ extended: true, limit:'100mb' }));
 app.use (cors ({
-    origin: "http://localhost:5173",
+    origin: "https://loopin-839q.onrender.com",
     credentials: true,
 }));
 app.use ("/api/v1/user", userRoute);

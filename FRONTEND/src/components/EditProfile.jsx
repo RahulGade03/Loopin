@@ -39,7 +39,7 @@ const EditProfile = () => {
         }
 
         try {
-            const res = await fetch('http://localhost:8000/api/v1/user/profile/edit', {
+            const res = await fetch('https://loopin-839q.onrender.com/api/v1/user/profile/edit', {
                 method: 'POST',
                 body: formData,
                 credentials: 'include'

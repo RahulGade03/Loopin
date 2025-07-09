@@ -31,7 +31,7 @@ const LeftSideBar = () => {
 
     const logoutHandler = async () => {
         try {
-            const res = await fetch("http://localhost:8000/api/v1/user/logout");
+            const res = await fetch("https://loopin-839q.onrender.com/api/v1/user/logout");
             const data = await res.json();
             console.log(data);
             if (data.success) {

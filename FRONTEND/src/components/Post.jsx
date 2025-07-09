@@ -37,7 +37,7 @@ const Post = ({ post }) => {
   const deleteHandler = async () => {
     try {
       // console.log("Entered")
-      const res = await fetch(`http://localhost:8000/api/v1/post/delete/${post?._id}`, {
+      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/delete/${post?._id}`, {
         method: 'POST',
         credentials: 'include'
       });
@@ -58,7 +58,7 @@ const Post = ({ post }) => {
 
   const likeDislikeHandler = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/post/${post._id}/likeDislike`, {
+      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${post._id}/likeDislike`, {
         credentials: 'include'
       });
       const data = await res.json();
@@ -89,7 +89,7 @@ const Post = ({ post }) => {
   const commentHandler = async (e) => {
     try {
       e.preventDefault();
-      const res = await fetch(`http://localhost:8000/api/v1/post/${post._id}/comment`, {
+      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${post._id}/comment`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -118,7 +118,7 @@ const Post = ({ post }) => {
 
   const bookmarkHandler = async () => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/post/${post._id}/bookmark`, {
+      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${post._id}/bookmark`, {
         credentials: 'include',
         method: 'POST',
       });

@@ -31,7 +31,7 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
     const commentHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:8000/api/v1/post/${selectedPost._id}/comment`, {
+            const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${selectedPost._id}/comment`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -61,7 +61,7 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
     const deleteHandler = async () => {
         try {
             console.log("Entered")
-            const res = await fetch(`http://localhost:8000/api/v1/post/delete/${post?._id}`, {
+            const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/delete/${post?._id}`, {
                 method: 'POST',
                 credentials: 'include'
             });

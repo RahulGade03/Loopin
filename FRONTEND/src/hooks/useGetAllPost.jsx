@@ -9,7 +9,7 @@ const useGetAllPost = () => {
         const fetchAllPost = async () => {
             try {
                 // console.log ("start")
-                const res = await fetch ('http://localhost:8000/api/v1/post/all', {
+                const res = await fetch ('https://loopin-839q.onrender.com/api/v1/post/all', {
                     method: 'GET',
                     credentials: 'include',
                 });

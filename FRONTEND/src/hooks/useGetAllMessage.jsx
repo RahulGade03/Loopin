@@ -9,7 +9,7 @@ const useGetAllMessage = () => {
     useEffect(() => {
         const fetchAllMessage = async () => {
             try {
-                const res = await fetch(`http://localhost:8000/api/v1/message/all/${selectedProfile?._id}`, {
+                const res = await fetch(`https://loopin-839q.onrender.com/api/v1/message/all/${selectedProfile?._id}`, {
                     credentials: 'include',
                 });
                 const data = await res.json();

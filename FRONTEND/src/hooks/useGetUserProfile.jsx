@@ -7,7 +7,7 @@ const useGetUserProfile = (userId) => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const userProfile = await fetch(`http://localhost:8000/api/v1/user/${userId}/profile`, {
+        const userProfile = await fetch(`https://loopin-839q.onrender.com/api/v1/user/${userId}/profile`, {
           credentials: 'include'
         });
         const data = await userProfile.json();

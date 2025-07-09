@@ -43,7 +43,7 @@ const CreatePost = ({ open, setOpen }) => {
             if (imagePreview) form.append("image", file);
             // console.log ('image appended...')
 
-            const data = await fetch('http://localhost:8000/api/v1/post/addpost', {
+            const data = await fetch('https://loopin-839q.onrender.com/api/v1/post/addpost', {
                 method: "POST",
                 body: form,
                 credentials: 'include'

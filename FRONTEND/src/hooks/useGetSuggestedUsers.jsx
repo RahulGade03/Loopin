@@ -7,7 +7,7 @@ const useGetSuggestedUsers = () => {
     useEffect(() => {
         const fetchSuggestedUsers = async () => {
             try {
-                const res = await fetch('http://localhost:8000/api/v1/user/suggested', {
+                const res = await fetch('https://loopin-839q.onrender.com/api/v1/user/suggested', {
                     credentials: 'include'
                 });
                 const data = await res.json();

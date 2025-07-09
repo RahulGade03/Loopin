@@ -26,7 +26,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await fetch("http://localhost:8000/api/v1/user/register", {
+            const res = await fetch("https://loopin-839q.onrender.com/api/v1/user/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
