@@ -15,7 +15,7 @@ const useGetAllPost = () => {
                 });
                 // console.log ("mid")
                 const data = await  res.json ();
-                console.log ("Result: ", data);
+                // console.log ("Result: ", data);
                 dispatch (setPosts (data.posts));
             } catch (error) {
                 console.log (error);

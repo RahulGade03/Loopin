@@ -33,7 +33,7 @@ const LeftSideBar = () => {
         try {
             const res = await fetch("https://loopin-839q.onrender.com/api/v1/user/logout");
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (data.success) {
                 dispatch (setAuthUser(null))
                 navigate('/login');

@@ -51,7 +51,7 @@ const CreatePost = ({ open, setOpen }) => {
             // console.log ('fetch executed')
             const data1 = await data.json();
             // console.log ('converted to data.json()');
-            console.log('Data: ', data1);
+            // console.log('Data: ', data1);
             if (data1.success) {
                 //Toast
                 setOpen(false)

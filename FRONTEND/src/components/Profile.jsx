@@ -17,11 +17,10 @@ const Profile = () => {
 
   const { userProfile, user } = useSelector(store => store.auth);
   const { selectedPost, posts } = useSelector(store => store.posts);
-  console.log(posts);
-
-  const [updatedComments, setUpdatedComments] = useState([]);
+  // console.log(posts);
   const [activeTab, setActiveTab] = useState('posts');
   const [bookmarks, setBookmarks] = useState([]);
+  console.log ("bookmarks: ", bookmarks);
 
   const isLoggedInUser = user?._id === userProfile?._id;
   const [isFollowing, setIsFollowing] = useState(

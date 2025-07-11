@@ -35,9 +35,9 @@ const ChatPage = () => {
                 method: "POST"
             })
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (data.success) {
-                console.log(messages);
+                // console.log(messages);
                 dispatch(setMessages([...messages, data.message]));
                 // console.log (messages);
                 setTextMessage("");

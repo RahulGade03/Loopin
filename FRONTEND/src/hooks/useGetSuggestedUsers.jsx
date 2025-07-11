@@ -11,7 +11,7 @@ const useGetSuggestedUsers = () => {
                     credentials: 'include'
                 });
                 const data = await res.json();
-                console.log(data.users);
+                // console.log(data.users);
                 dispatch(setSuggestedUsers(data.users));
             } catch (error) {
                 console.log(error);

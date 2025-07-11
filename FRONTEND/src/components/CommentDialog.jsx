@@ -42,7 +42,7 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
                 })
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (data.success) {
                 const updatedCommentData = [...updatedComments, data.comment];
                 setUpdatedComments(updatedCommentData);
@@ -60,14 +60,14 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
 
     const deleteHandler = async () => {
         try {
-            console.log("Entered")
+            // console.log("Entered")
             const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/delete/${post?._id}`, {
                 method: 'POST',
                 credentials: 'include'
             });
-            console.log("mid")
+            // console.log("mid")
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (data.success) {
                 const updatedPosts = posts.filter((postItem) => {
                     return postItem?._id !== post?._id;

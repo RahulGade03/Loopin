@@ -53,7 +53,7 @@ const Login = () => {
       } else {
         // Toast
       }
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.log(error);
     } finally {

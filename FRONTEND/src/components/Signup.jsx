@@ -42,7 +42,7 @@ const Signup = () => {
             if (data.success) {
                 navigate('/login');
 
-                console.log(data);
+                // console.log(data);
                 setInput({
                     username: "",
                     email: "",

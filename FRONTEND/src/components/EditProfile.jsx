@@ -23,7 +23,7 @@ const EditProfile = () => {
         const previewURL = URL.createObjectURL(photo);
         setInfo({ ...info, profilePicture: photo, previewURL: previewURL });
     }
-    console.log(info)
+    // console.log(info)
 
     const handleChange = (e) => {
         setInfo({ ...info, [e.target.name]: e.target.value });
@@ -45,7 +45,7 @@ const EditProfile = () => {
                 credentials: 'include'
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
 
             if (data.success) {
                 dispatch (setAuthUser(data.user));
