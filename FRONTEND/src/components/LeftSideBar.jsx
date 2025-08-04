@@ -14,8 +14,8 @@ const LeftSideBar = () => {
 
     const items = [
         { icon: <Home />, text: "Home" },
-        { icon: <Search />, text: "Search" },
-        { icon: <TrendingUp />, text: "Explore" },
+        // { icon: <Search />, text: "Search" },
+        // { icon: <TrendingUp />, text: "Explore" },
         { icon: <MessageCircle />, text: "Chats" },
         { icon: <PlusSquare />, text: "Create" },
         {

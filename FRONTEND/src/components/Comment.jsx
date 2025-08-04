@@ -24,7 +24,6 @@ const Comment = ({ comment }) => {
             {comment.author.username}
           </span>
         </Link>
-
       </div>
       <div className="bg-gray-100 rounded-xl px-4 py-2 w-full">
         <p className="text-sm text-gray-700 mt-1">{comment.text}</p>

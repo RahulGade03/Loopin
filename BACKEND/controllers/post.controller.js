@@ -10,9 +10,10 @@ export const addNewPost = async (req, res) => {
         const { caption } = req.body;
         const image = req.file;
         const authorId = req.id;
-        console.log(authorId);
+        // console.log(authorId);
 
         if (!image) return res.status(400).json({ message: 'Image required!' });
+
         const optimisedImageBuffer = await sharp(image.buffer)
             .resize({ width: 800, height: 800, fit: 'inside' })
             .toFormat('jpeg', { quality: 80 })
@@ -25,6 +26,7 @@ export const addNewPost = async (req, res) => {
             image: cloudResponse.secure_url,
             author: authorId
         });
+
         const user = await User.findById(authorId);
         if (user) {
             user.posts.push(post._id);
@@ -181,7 +183,11 @@ export const addComment = async (req, res) => {
 export const getCommentsofPost = async (req, res) => {
     try {
         const postId = req.params.id;
-        const comments = await Comment.find({ post: postId }).populate({ path: 'author', select: 'username profilePicture' });
+        const comments = await Comment.find({ post: postId })
+                                      .populate({ 
+                                        path: 'author', 
+                                        select: 'username profilePicture' 
+                                    });
         if (!comments) {
             return res.status(400).json({
                 message: 'No comments found for this post',
@@ -240,7 +246,7 @@ export const getAllBookmarks = async (req, res) => {
             message: "User not found"
         });
     }
-    let bookmarks = (await user.populate('bookmarks'))
+    let bookmarks = await user.populate('bookmarks');
     bookmarks = bookmarks.bookmarks;
     if (!bookmarks) {
         res.status(404).json({
