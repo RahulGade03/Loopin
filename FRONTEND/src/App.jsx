@@ -1,32 +1,37 @@
+import { useEffect } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { io } from 'socket.io-client';
+import { useDispatch, useSelector } from 'react-redux';
+
 import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup.jsx';
 import MainLayout from './components/MainLayout.jsx';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Profile from './components/Profile.jsx';
 import Home from './components/Home.jsx';
 import EditProfile from './components/EditProfile.jsx';
 import ChatPage from './components/ChatPage.jsx';
-import { io } from 'socket.io-client';
-import { useDispatch, useSelector } from 'react-redux';
 import { setSocket } from './redux/socketSlice';
-import { useEffect } from 'react';
 import { setOnlineUsers } from './redux/chatSlice';
 import ProtectedRoutes from './components/ProtectedRoutes';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 
 const browserRouter = createBrowserRouter([
   {
     path: '/',
     element: <ProtectedRoutes><MainLayout /></ProtectedRoutes>,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/profile/:id', element: <ProtectedRoutes><Profile /></ProtectedRoutes> },
-      { path: '/editProfile', element: <ProtectedRoutes><EditProfile /></ProtectedRoutes> },
-      { path: '/chats', element: <ProtectedRoutes><ChatPage /></ProtectedRoutes> }
+      { path: '', element: <Home /> },
+      { path: 'profile/:id', element: <ProtectedRoutes><Profile /></ProtectedRoutes> },
+      { path: 'editProfile', element: <ProtectedRoutes><EditProfile /></ProtectedRoutes> },
+      { path: 'chats', element: <ProtectedRoutes><ChatPage /></ProtectedRoutes> }
     ]
   },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <Signup /> },
+  { path: '/forgot-password', element: <ForgotPassword />},
+  { path: '/reset-password/:userId', element: <ResetPassword /> }
 ]);
 
 function App() {
@@ -35,7 +40,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (user) {
-      const socketio = io('https://loopin-839q.onrender.com', {
+      const socketio = io(`${import.meta.env.VITE_BACKEND_BASE_URL}`, {
         query: {
           userId: user?._id
         },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+
 const Signup = () => {
     const [input, setInput] = useState({
         username: "",
@@ -26,31 +27,28 @@ const Signup = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await fetch("https://loopin-839q.onrender.com/api/v1/user/register", {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: input.username[0],
-                    email: input.email[0],
-                    password: input.password[0]
-                }),
-                withCredentials: true
+                    username: input.username,
+                    email: input.email,
+                    password: input.password
+                })
             });
+
             const data = await res.json();
             if (data.success) {
                 navigate('/login');
-
-                // console.log(data);
                 setInput({
                     username: "",
                     email: "",
                     password: ""
                 });
             } else {
-                // console.log(data);
-                //Toast
+                console.log(data);
             }
         } catch (error) {
             console.log(error);

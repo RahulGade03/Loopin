@@ -31,17 +31,18 @@ const Profile = () => {
   }, [userProfile]);
 
 
-  if (!userProfile)
+  if (!userProfile) {
     return (
       <div className="flex items-center justify-center min-h-screen text-lg text-gray-600">
         Loading...
       </div>
     );
+  }
 
   const handleFollow = async () => {
     // console.log(userProfile);
     const res = await fetch(
-      `https://loopin-839q.onrender.com/api/v1/user/followorunfollow/${userProfile._id}`,
+      `${import.meta.env.VITE_BACKEND_BASE_URL}/user/followorunfollow/${userProfile._id}`,
       {
         method: 'POST',
         credentials: 'include',
@@ -72,7 +73,7 @@ const Profile = () => {
 
   const handleBookmark = async () => {
     setActiveTab('bookmarks');
-    const res = await fetch("https://loopin-839q.onrender.com/api/v1/post/allBookmarks", {
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/allBookmarks`, {
       credentials: 'include',
     });
     const data = await res.json();

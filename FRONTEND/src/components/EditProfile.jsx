@@ -39,7 +39,7 @@ const EditProfile = () => {
         }
 
         try {
-            const res = await fetch('https://loopin-839q.onrender.com/api/v1/user/profile/edit', {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/profile/edit`, {
                 method: 'POST',
                 body: formData,
                 credentials: 'include'
@@ -64,9 +64,7 @@ const EditProfile = () => {
                 <h2 className="text-lg font-semibold text-gray-800">Profile Picture</h2>
                 <Avatar className="w-24 h-24 ring-2 ring-pink-500 rounded-full overflow-hidden">
                     <AvatarImage src={info?.previewURL || info?.profilePicture} className="object-cover" />
-                    <AvatarFallback>
-                        CN
-                    </AvatarFallback>
+                    <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <input ref={photoRef} onChange={handlePhotoChange} type="file" accept="image/*" className="hidden" />
                 <button onClick={() => { photoRef?.current.click() }} className="px-4 py-1 text-sm font-medium text-pink-600 border border-pink-500 rounded-lg hover:bg-pink-50 focus:outline-none focus:ring-2 focus:ring-pink-400">Change photo</button>

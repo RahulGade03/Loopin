@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
 import { Badge } from "@/components/ui/badge"
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { MessageCircle, MoreHorizontal } from 'lucide-react'
 import { FaBookmark, FaHeart, FaRegBookmark, FaRegHeart } from "react-icons/fa"
 import CommentDialog from './CommentDialog.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPosts, setSelectedPost } from '@/redux/postSlice.js'
-import { Link } from 'react-router-dom'
 import { setAuthUser } from '@/redux/authSlice.js'
+import { Link } from 'react-router-dom'
 
 const Post = ({ post }) => {
   if (!post || !post.likes || !post.author) {
@@ -23,10 +19,10 @@ const Post = ({ post }) => {
   const { user } = useSelector(store => store.auth);
   const { posts } = useSelector(store => store.posts);
   const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(post.likes.map(String).includes(String(user?._id)));
+  const [isLiked, setIsLiked] = useState(post.likes?.map(String).includes(String(user?._id))); // contains mongodb objectids Object("0xabc...") therefore conver them to string -> "0xabc..."
   const [likes, setLikes] = useState(post.likes.length);
   const [updatedComments, setUpdatedComments] = useState(post.comments);
-  const [isBookmarked, setIsBookmarked] = useState(Array.isArray(user?.bookmarks) ? user.bookmarks.map(String).includes(String(post._id)) : false);
+  const [isBookmarked, setIsBookmarked] = useState(user.bookmarks?.map(String).includes(String(post._id)));
   // console.log(isBookmarked);
 
   const changeEventHandler = (e) => {
@@ -36,14 +32,11 @@ const Post = ({ post }) => {
 
   const deleteHandler = async () => {
     try {
-      // console.log("Entered")
-      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/delete/${post?._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/delete/${post?._id}`, {
         method: 'POST',
         credentials: 'include'
       });
-      // console.log("mid")
       const data = await res.json();
-      // console.log(data);
       if (data.success) {
         const updatedPosts = posts.filter((postItem) => {
           return postItem?._id !== post?._id;
@@ -58,11 +51,10 @@ const Post = ({ post }) => {
 
   const likeDislikeHandler = async () => {
     try {
-      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${post._id}/likeDislike`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/${post._id}/likeDislike`, {
         credentials: 'include'
       });
       const data = await res.json();
-      // console.log(data);
 
       let newLikesArray;
       if (data.message === 'Post liked') {
@@ -77,7 +69,7 @@ const Post = ({ post }) => {
           return id != user._id;
         })
       }
-      const updatedPosts = posts.map((p) => {
+      const updatedPosts = posts?.map((p) => {
         return p._id === post?._id ? { ...p, likes: newLikesArray } : p;
       })
       dispatch(setPosts(updatedPosts));
@@ -89,7 +81,7 @@ const Post = ({ post }) => {
   const commentHandler = async (e) => {
     try {
       e.preventDefault();
-      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${post._id}/comment`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/${post._id}/comment`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -104,7 +96,7 @@ const Post = ({ post }) => {
       if (data.success) {
         const updatedCommentData = [...updatedComments, data.comment];
         setUpdatedComments(updatedCommentData);
-        const updatedPosts = posts.map((p) => (
+        const updatedPosts = posts?.map((p) => (
           p._id === post._id ? { ...p, comments: updatedCommentData } : p
         ))
         dispatch(setPosts(updatedPosts));
@@ -118,7 +110,7 @@ const Post = ({ post }) => {
 
   const bookmarkHandler = async () => {
     try {
-      const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${post._id}/bookmark`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/${post._id}/bookmark`, {
         credentials: 'include',
         method: 'POST',
       });
@@ -178,7 +170,7 @@ const Post = ({ post }) => {
           </DialogTrigger>
           <DialogContent className="w-64" hideClose>
             <button className="rounded-md block w-full text-center px-4 py-2 hover:bg-gray-100">Unfollow</button>
-            <button className="rounded-md block w-full text-center px-4 py-2 hover:bg-gray-100">Add to favourites    </button>
+            <button className="rounded-md block w-full text-center px-4 py-2 hover:bg-gray-100">Bookmark Post</button>
             {
               user && user?._id === post?.author._id && <button onClick={deleteHandler} className="rounded-md block w-full text-center px-4 py-2 hover:bg-red-100 text-red-600">Delete</button>
             }

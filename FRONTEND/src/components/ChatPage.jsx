@@ -15,7 +15,6 @@ const ChatPage = () => {
     const { suggestedUsers, selectedProfile } = useSelector(store => store.auth)
     const { onlineUsers, messages } = useSelector(store => store.chat)
     const dispatch = useDispatch();
-    // console.log(textMessage)
 
     useEffect(() => {
         if (location.state?.profile) {
@@ -26,20 +25,19 @@ const ChatPage = () => {
     const sendMessageHandler = async (e) => {
         try {
             e.preventDefault();
-            const res = await fetch(`https://loopin-839q.onrender.com/api/v1/message/send/${selectedProfile?._id}`, {
-                credentials: 'include',
-                body: JSON.stringify({ message: textMessage }),
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/message/send/${selectedProfile?._id}`, {
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                method: "POST"
+                body: JSON.stringify({ 
+                    message: textMessage 
+                }),
+                credentials: 'include',
             })
             const data = await res.json();
-            // console.log(data);
             if (data.success) {
-                // console.log(messages);
                 dispatch(setMessages([...messages, data.message]));
-                // console.log (messages);
                 setTextMessage("");
             }
         } catch (error) {

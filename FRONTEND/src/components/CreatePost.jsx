@@ -1,10 +1,5 @@
-import React, { useRef, useState } from 'react'
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle
-} from "@/components/ui/dialog"
+import React, { useRef, useState } from 'react';
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { readFileAsDataURL } from '@/lib/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts } from '@/redux/postSlice';
@@ -16,6 +11,7 @@ const CreatePost = ({ open, setOpen }) => {
     const [imagePreview, setImagePreview] = useState("");
     const [caption, setCaption] = useState("");
     const [loading, setLoading] = useState (false);
+    
     const {posts} = useSelector (store => store.posts)
     const dispatch = useDispatch ();
 
@@ -36,21 +32,17 @@ const CreatePost = ({ open, setOpen }) => {
     const sendPostHandler = async () => {
         try {
             setLoading (true);
-            // console.log('File going: ', file);
-            // console.log('Caption going: ', caption);
             const form = new FormData();
             form.append("caption", caption);
             if (imagePreview) form.append("image", file);
-            // console.log ('image appended...')
 
-            const data = await fetch('https://loopin-839q.onrender.com/api/v1/post/addpost', {
+            // "Content-Type" : automatically set as multipart/form-data
+            const data = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/addpost`, {
                 method: "POST",
                 body: form,
                 credentials: 'include'
             });
-            // console.log ('fetch executed')
             const data1 = await data.json();
-            // console.log ('converted to data.json()');
             // console.log('Data: ', data1);
             if (data1.success) {
                 //Toast

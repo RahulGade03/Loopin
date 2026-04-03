@@ -1,4 +1,5 @@
 import sharp from 'sharp';
+
 import cloudinary from '../utils/cloudinary.js';
 import Post from '../models/post.model.js';
 import User from '../models/user.model.js';
@@ -10,7 +11,6 @@ export const addNewPost = async (req, res) => {
         const { caption } = req.body;
         const image = req.file;
         const authorId = req.id;
-        // console.log(authorId);
 
         if (!image) return res.status(400).json({ message: 'Image required!' });
 
@@ -48,16 +48,23 @@ export const addNewPost = async (req, res) => {
 
 export const getAllPost = async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 })
-            .populate({ path: 'author', select: 'username profilePicture' })
-            .populate({
+        const posts = await Post.find().sort({
+            createdAt: -1
+        }).populate([
+            { 
+                path: 'author', 
+                select: 'username profilePicture' 
+            },
+            {
                 path: 'comments',
                 sort: { createdAt: -1 },
                 populate: {
                     path: 'author',
                     select: 'username profilePicture'
                 }
-            });
+            }
+        ]);
+
         return res.status(200).json({
             posts,
             success: true
@@ -72,18 +79,21 @@ export const getUserPost = async (req, res) => {
     try {
         const authorId = req.id;
         const posts = await Post.find({ author: authorId }).sort({ createdAt: -1 })
-            .popoulate({
-                path: 'author',
-                select: 'username profilePicture'
-            })
-            .populate({
-                path: 'comment',
-                sort: { createdAt: -1 },
-                populate: {
-                    path: 'author',
-                    select: 'username profilePicture'
+            .popoulate([
+                { 
+                    path: 'author', 
+                    select: 'username profilePicture' 
+                },
+                {
+                    path: 'comment',
+                    sort: { createdAt: -1 },
+                    populate: {
+                        path: 'author',
+                        select: 'username profilePicture'
+                    }
                 }
-            })
+            ])
+
         return res.status(200).json({
             posts,
             success: true
@@ -184,10 +194,11 @@ export const getCommentsofPost = async (req, res) => {
     try {
         const postId = req.params.id;
         const comments = await Comment.find({ post: postId })
-                                      .populate({ 
-                                        path: 'author', 
-                                        select: 'username profilePicture' 
-                                    });
+            .populate({
+                path: 'author',
+                select: 'username profilePicture'
+            });
+
         if (!comments) {
             return res.status(400).json({
                 message: 'No comments found for this post',
@@ -241,13 +252,19 @@ export const getAllBookmarks = async (req, res) => {
     const userId = req.id;
     let user = await User.findById(userId);
     if (!user) {
-        res.sattus(404).json({
-            status: false,
+        res.status(404).json({
+            success: false,
             message: "User not found"
         });
     }
-    let bookmarks = await user.populate('bookmarks');
-    bookmarks = bookmarks.bookmarks;
+    user = await user.populate({
+        path : 'bookmarks',
+        populate: {
+            path: 'author',
+            select: 'username profilePicture'
+        }
+    });
+    const bookmarks = user.bookmarks;
     if (!bookmarks) {
         res.status(404).json({
             success: false,
@@ -263,7 +280,7 @@ export const getAllBookmarks = async (req, res) => {
 export const bookmarkPost = async (req, res) => {
     try {
         const postId = req.params.id;
-        const authorId = req.id;
+        const userId = req.id;
         let post = await Post.findById(postId);
         post = await post.populate([
             {
@@ -287,7 +304,7 @@ export const bookmarkPost = async (req, res) => {
             });
         }
 
-        const user = await User.findById(authorId);
+        const user = await User.findById(userId);
         if (user.bookmarks.includes(post._id)) {
             await user.updateOne({ $pull: { bookmarks: post._id } });
             await user.save();

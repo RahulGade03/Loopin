@@ -7,7 +7,7 @@ export function cn(...inputs) {
 
 export const readFileAsDataURL = (file) => {
   return new Promise((resolve) => {
-    const reader = new FileReader();
+    const reader = new FileReader();  // Event based and thus we are using Promise
     reader.onloadend = () => {
       if (typeof reader.result === 'string') resolve(reader.result);
     }

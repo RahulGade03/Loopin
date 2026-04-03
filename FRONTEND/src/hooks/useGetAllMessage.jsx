@@ -1,7 +1,7 @@
-import { setMessages } from "@/redux/chatSlice";
-import { setPosts } from "@/redux/postSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { setMessages } from "@/redux/chatSlice";
 
 const useGetAllMessage = () => {
     const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const useGetAllMessage = () => {
     useEffect(() => {
         const fetchAllMessage = async () => {
             try {
-                const res = await fetch(`https://loopin-839q.onrender.com/api/v1/message/all/${selectedProfile?._id}`, {
+                const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/message/all/${selectedProfile?._id}`, {
                     credentials: 'include',
                 });
                 const data = await res.json();

@@ -7,11 +7,10 @@ const useGetSuggestedUsers = () => {
     useEffect(() => {
         const fetchSuggestedUsers = async () => {
             try {
-                const res = await fetch('https://loopin-839q.onrender.com/api/v1/user/suggested', {
+                const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/suggested`, {
                     credentials: 'include'
                 });
                 const data = await res.json();
-                // console.log(data.users);
                 dispatch(setSuggestedUsers(data.users));
             } catch (error) {
                 console.log(error);

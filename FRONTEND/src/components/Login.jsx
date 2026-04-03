@@ -1,11 +1,10 @@
-import { setAuthUser } from '@/redux/authSlice';
 import React, { useEffect, useState } from 'react';
+import { setAuthUser } from '@/redux/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [input, setInput] = useState({
-    username: "",
     email: "",
     password: ""
   });
@@ -22,38 +21,38 @@ const Login = () => {
   }, [])
 
   const changeEventHandler = (e) => {
-    setInput({ ...input, [e.target.name]: [e.target.value] });
+    setInput({ ...input, [e.target.name]: e.target.value });
   }
 
   const loginHandler = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("https://loopin-839q.onrender.com/api/v1/user/login", {
+      console.log(import.meta.env.VITE_BACKEND_BASE_URL);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          username: input.username[0],
-          email: input.email[0],
-          password: input.password[0]
+          email: input.email,
+          password: input.password
         }),
-        credentials: "include"
+        credentials: 'include'
       });
+
       const data = await res.json();
       if (data.success) {
         dispatch(setAuthUser(data.user));
         navigate('/');
         setInput({
-          username: "",
           email: "",
           password: ""
         });
       } else {
         // Toast
+        console.log(data);
       }
-      // console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -117,6 +116,7 @@ const Login = () => {
                 )
               }
               <div className='text-center mt-3'> <Link to={'/signup'} className='text-blue-400'>Create account</Link></div>
+              <div className='text-center mt-3'> <Link to={'/forgot-password'} className='text-blue-400'>Forgot Password</Link></div>
             </div>
           </div>
         </form>

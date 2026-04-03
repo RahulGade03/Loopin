@@ -1,5 +1,5 @@
-import { Home, LogOut, MessageCircle, PlusSquare, Search, TrendingUp } from 'lucide-react';
 import React, { useState } from 'react';
+import { Home, LogOut, MessageCircle, PlusSquare} from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,6 @@ const LeftSideBar = () => {
     const items = [
         { icon: <Home />, text: "Home" },
         // { icon: <Search />, text: "Search" },
-        // { icon: <TrendingUp />, text: "Explore" },
         { icon: <MessageCircle />, text: "Chats" },
         { icon: <PlusSquare />, text: "Create" },
         {
@@ -31,9 +30,8 @@ const LeftSideBar = () => {
 
     const logoutHandler = async () => {
         try {
-            const res = await fetch("https://loopin-839q.onrender.com/api/v1/user/logout");
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/user/logout`);
             const data = await res.json();
-            // console.log(data);
             if (data.success) {
                 dispatch (setAuthUser(null))
                 navigate('/login');

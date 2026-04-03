@@ -1,11 +1,5 @@
 // import { Dialog, DialogContent } from '@radix-ui/react-dialog'
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { MoreHorizontal } from "lucide-react";
 import React, { useEffect, useState } from 'react'
@@ -31,7 +25,7 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
     const commentHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/${selectedPost._id}/comment`, {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/${selectedPost._id}/comment`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -60,12 +54,10 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
 
     const deleteHandler = async () => {
         try {
-            // console.log("Entered")
-            const res = await fetch(`https://loopin-839q.onrender.com/api/v1/post/delete/${post?._id}`, {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/post/delete/${post?._id}`, {
                 method: 'POST',
                 credentials: 'include'
             });
-            // console.log("mid")
             const data = await res.json();
             // console.log(data);
             if (data.success) {
@@ -82,16 +74,13 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
 
     return (
         <Dialog open={open}>
-            {/* Main pop‑up */}
             <DialogContent
-                /* remove Shadcn padding, force full‑bleed content */
                 className="w-full max-w-3xl p-0 overflow-hidden rounded-xl border shadow-2xl
                    sm:max-w-4xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur"
                 onInteractOutside={() => { setOpen(false) }}
             >
                 <DialogTitle></DialogTitle>
                 <div className="flex h-[80vh] flex-col md:flex-row">
-                    {/* ── Media column ───────────────────────────── */}
                     <div className="relative flex-1 bg-black">
                         <img
                             src={post.image}
@@ -100,8 +89,6 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
                         />
                     </div>
 
-
-                    {/* ── Meta / comments column ────────────────── */}
                     <div className="flex w-full max-w-sm flex-col">
                         {/* Header */}
                         <div className="flex items-center justify-between gap-3 border-b px-4 py-3">
@@ -131,7 +118,7 @@ const CommentDialog = ({ open, setOpen, post, updatedComments, setUpdatedComment
 
                                 <DialogContent className="w-60 p-0 overflow-hidden rounded-md">
                                     <button className="rounded-md block w-full text-center px-4 py-2 hover:bg-gray-100">Unfollow</button>
-                                    <button className="rounded-md block w-full text-center px-4 py-2 hover:bg-gray-100">Add to favourites    </button>
+                                    <button className="rounded-md block w-full text-center px-4 py-2 hover:bg-gray-100">Bookmark Post</button>
                                     {
                                         user && user?._id === post?.author && <button onClick={deleteHandler} className="rounded-md block w-full text-center px-4 py-2 hover:bg-red-100 text-red-600">Delete</button>
                                     }

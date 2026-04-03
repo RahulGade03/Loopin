@@ -4,18 +4,20 @@ import http from "http";
 
 const app = express();
 
-const server = http.createServer (app);
+const server = http.createServer(app);
 
 const io = new Server (server, {
     cors: {
-        origin: 'https://loopin-839q.onrender.com',
+        origin: `${process.env.FRONTEND_BASE_URL}`,
         method: ['GET', 'POST']
     }
 })
 
 const userSocketMap = {}; // This map stores socketId corresponding to the userId
 
-export const getReceiverSocketId = (receiverId) => userSocketMap[receiverId];
+export const getReceiverSocketId = (receiverId) => {
+    return userSocketMap[receiverId];
+}
 
 io.on ('connection', (socket) => {
     const userId = socket.handshake.query.userId;
@@ -23,7 +25,7 @@ io.on ('connection', (socket) => {
         userSocketMap[userId] = socket.id;
         console.log (`User connected: UserId=${userId}, SocketId=${socket.id}`);
     }
-    io.emit ('getOnlineUsers', Object.keys(userSocketMap));
+    io.emit ('getOnlineUsers', Object.keys(userSocketMap)); // gives only the keys from the userSocketMap object
 
     socket.on ('disconnected', () => {
         if (userId) {
