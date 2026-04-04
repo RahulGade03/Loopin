@@ -59,7 +59,7 @@ const EditProfile = () => {
     }
 
     return (
-        <div className="mt-15 max-w-md min-w-1/2 mx-auto p-6 space-y-6 bg-white rounded-2xl shadow-lg">
+        <div className="mt-15 w-[70vw] mx-auto p-6 space-y-6 bg-white rounded-2xl shadow-lg">
             <div className="flex flex-col items-center gap-4">
                 <h2 className="text-lg font-semibold text-gray-800">Profile Picture</h2>
                 <Avatar className="w-24 h-24 ring-2 ring-pink-500 rounded-full overflow-hidden">
