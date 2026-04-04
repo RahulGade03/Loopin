@@ -14,7 +14,7 @@ const Signup = () => {
     const { user } = useSelector(store => store.auth);
 
     const changeEventHandler = (e) => {
-        setInput({ ...input, [e.target.name]: [e.target.value] });
+        setInput({ ...input, [e.target.name]: e.target.value });
     }
 
     useEffect(() => {

@@ -22,7 +22,7 @@ const Post = ({ post }) => {
   const [isLiked, setIsLiked] = useState(post.likes?.map(String).includes(String(user?._id))); // contains mongodb objectids Object("0xabc...") therefore conver them to string -> "0xabc..."
   const [likes, setLikes] = useState(post.likes.length);
   const [updatedComments, setUpdatedComments] = useState(post.comments);
-  const [isBookmarked, setIsBookmarked] = useState(user.bookmarks?.map(String).includes(String(post._id)));
+  const [isBookmarked, setIsBookmarked] = useState(user?.bookmarks?.map(String).includes(String(post._id)));
   // console.log(isBookmarked);
 
   const changeEventHandler = (e) => {
@@ -119,7 +119,7 @@ const Post = ({ post }) => {
       if (data.success) {
         let updatedUser;
         if (data.type === 'bookmark') {
-          const currentBookmarks = Array.isArray(user?.bookmarks) ? user.bookmarks : [];
+          const currentBookmarks = Array.isArray(user?.bookmarks) ? user?.bookmarks : [];
           updatedUser = {
             ...user,
             bookmarks: [...currentBookmarks, post._id]
@@ -127,7 +127,7 @@ const Post = ({ post }) => {
           setIsBookmarked(true);
         }
         else {
-          const updatedBookmarks = (Array.isArray(user?.bookmarks) ? user.bookmarks : []).filter(
+          const updatedBookmarks = (Array.isArray(user?.bookmarks) ? user?.bookmarks : []).filter(
             (id) => id != post._id
           );
           updatedUser = {
@@ -150,7 +150,7 @@ const Post = ({ post }) => {
   }
 
   return (
-    <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-4 space-y-4">
+    <div className="min-w-[20vw] max-w-[40vw] mx-auto bg-white rounded-2xl shadow-md p-4 space-y-4">
 
       {/* Header */}
       <div className="flex items-center justify-between">

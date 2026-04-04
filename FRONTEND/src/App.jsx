@@ -30,13 +30,13 @@ const browserRouter = createBrowserRouter([
   },
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <Signup /> },
-  { path: '/forgot-password', element: <ForgotPassword />},
+  { path: '/forgot-password', element: <ForgotPassword /> },
   { path: '/reset-password/:userId', element: <ResetPassword /> }
 ]);
 
 function App() {
   const { user } = useSelector(store => store.auth);
-  const { socket } = useSelector (store => store.socketio);
+  const { socket } = useSelector(store => store.socketio);
   const dispatch = useDispatch();
   useEffect(() => {
     if (user) {

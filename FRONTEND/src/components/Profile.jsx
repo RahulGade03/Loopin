@@ -144,8 +144,8 @@ const Profile = () => {
 
       {/* Bio */}
       {userProfile.bio && (
-        <p className="max-w-2xl mx-auto sm:mx-0 mb-10 text-gray-700 text-center sm:text-left">
-          {userProfile.bio}
+        <p className="max-w-2xl font-semibold mx-auto sm:mx-0 mb-10 text-gray-700 text-center sm:text-left">
+          <i>{userProfile.bio}</i>
         </p>
       )}
 
@@ -176,7 +176,7 @@ const Profile = () => {
 
       {
         activeTab === 'posts' &&
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 min-w-[68rem]">
+        <div className="grid gap-85 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {posts?.filter((post) => post.author._id === userProfile._id)
             .map((post) => (
               <Post key={post._id} post={post} />
@@ -185,7 +185,7 @@ const Profile = () => {
       }
       {
         activeTab === 'bookmarks' &&
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 min-w-[67rem]">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {
             bookmarks?.map((bookmark) => {
               return <Post key={bookmark._id} post={bookmark} />

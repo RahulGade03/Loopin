@@ -15,8 +15,8 @@ export const addNewPost = async (req, res) => {
         if (!image) return res.status(400).json({ message: 'Image required!' });
 
         const optimisedImageBuffer = await sharp(image.buffer)
-            .resize({ width: 800, height: 800, fit: 'inside' })
-            .toFormat('jpeg', { quality: 80 })
+            .resize({ height: 1000, width: 1000, fit: 'inside' })
+            .toFormat('jpeg', { quality: 100 })
             .toBuffer();
 
         const fileUri = `data:image/jpeg;base64,${optimisedImageBuffer.toString('base64')}`;

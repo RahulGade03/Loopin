@@ -3,8 +3,10 @@ import { Home, LogOut, MessageCircle, PlusSquare} from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAuthUser } from '@/redux/authSlice';
+import { setAuthUser, setSelectedProfile, setSuggestedUsers, setUserProfile } from '@/redux/authSlice';
 import CreatePost from './CreatePost';
+import { setMessages, setOnlineUsers } from '@/redux/chatSlice';
+import { setPosts, setSelectedPost } from '@/redux/postSlice';
 
 const LeftSideBar = () => {
     const navigate = useNavigate();
@@ -34,6 +36,16 @@ const LeftSideBar = () => {
             const data = await res.json();
             if (data.success) {
                 dispatch (setAuthUser(null))
+                dispatch (setUserProfile(null))
+                dispatch (setSelectedProfile(null))
+                dispatch (setSuggestedUsers(null))
+
+                dispatch (setMessages(null))
+                dispatch (setOnlineUsers(null))
+
+                dispatch (setPosts(null))
+                dispatch (setSelectedPost(null))
+    
                 navigate('/login');
                 //Toast
             }
