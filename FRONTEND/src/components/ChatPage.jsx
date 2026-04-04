@@ -53,7 +53,7 @@ const ChatPage = () => {
 
     return (
         <div className="h-screen w-full bg-white">
-            <div className="ml-65 flex h-full">
+            <div className=" flex h-full">
                 {/* Sidebar */}
                 <section className="w-72 border-r border-gray-200 flex flex-col">
                     <div className="px-6 py-4">
@@ -86,7 +86,7 @@ const ChatPage = () => {
                 </section>
 
                 {/* Chat area */}
-                <section className="flex-1 flex flex-col bg-gray-50">
+                <section className="flex-1 min-w-[65vw] flex flex-col bg-gray-50">
                     {selectedProfile ? (
                         <>
                             {/* Header */}

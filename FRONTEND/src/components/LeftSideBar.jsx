@@ -73,7 +73,7 @@ const LeftSideBar = () => {
         }
     }
     return (
-        <div className="fixed top-0 left-0 min-h-screen w-64 bg-white border-r border-gray-200 p-6 flex flex-col shadow-lg">
+        <div className="fixed top-0 left-0 min-h-screen w-[15vw] max-w-[250px] bg-white border-r border-gray-200 p-6 flex flex-col shadow-lg">
             <h2 className="text-6xl pl-2 mb-4">🚀</h2>
 
             <div className="flex flex-col space-y-4">

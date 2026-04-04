@@ -5,7 +5,9 @@ const MainLayout = () => {
   return (
     <div className="flex max-w-[1200px] w-full mx-auto">
         <LeftSideBar/>
-        <Outlet/>
+        <div className="ml-[3vw]">
+          <Outlet/>
+        </div>
     </div>
   );
 }
