@@ -6,13 +6,14 @@
   "scripts": {
     "dev": "nodemon BACKEND/index.js",
     "build": "npm install && npm install --prefix FRONTEND && npm run build --prefix FRONTEND",
-    "start": "nodemon BACKEND/index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "serverless-http": "^3.2.0",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
     "cookie-parser": "^1.4.7",
