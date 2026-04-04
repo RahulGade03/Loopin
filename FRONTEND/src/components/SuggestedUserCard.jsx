@@ -17,8 +17,8 @@ const SuggestedUserCard = ({ user }) => {
     <div>
         <div className='flex w-[35vw] items-center justify-between'>
         <Link to={`/profile/${user?._id}`}>
-          <div className=" h-20 flex items-center justify-center space-x-3 w-[20vw] border-2 border-r-white rounded-tl-full rounded-bl-full border-t-blue-600 border-b-blue-600 border-l-blue-600">
-            <Avatar className="pl-[1rem] w-[4rem] h-[4rem] rounded-full overflow-hidden border">
+          <div className="pl-[1rem] h-20 flex items-center justify-center space-x-3 w-[20vw] border-2 border-r-white rounded-tl-full rounded-bl-full border-t-blue-600 border-b-blue-600 border-l-blue-600">
+            <Avatar className="w-[4rem] h-[4rem] rounded-full overflow-hidden border">
               <AvatarImage src={user?.profilePicture} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
