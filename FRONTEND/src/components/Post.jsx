@@ -150,7 +150,7 @@ const Post = ({ post }) => {
   }
 
   return (
-    <div className="min-w-[20vw] max-w-[40vw] bg-white rounded-2xl shadow-md p-4 space-y-4">
+    <div className="min-w-[20vw] max-w-[40vw] mx-auto bg-white rounded-2xl shadow-md p-4 space-y-4">
 
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -183,7 +183,7 @@ const Post = ({ post }) => {
         <img
           src={post.image}
           alt="Post"
-          className="w-full object-cover"
+          className="w-full object- max-h-[60vh]"
         />
       </div>
 

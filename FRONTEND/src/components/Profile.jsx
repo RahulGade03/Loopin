@@ -176,7 +176,7 @@ const Profile = () => {
 
       {
         activeTab === 'posts' &&
-        <div className="grid gap-85 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-[15rem] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {posts?.filter((post) => post.author._id === userProfile._id)
             .map((post) => (
               <Post key={post._id} post={post} />

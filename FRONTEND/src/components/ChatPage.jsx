@@ -86,7 +86,7 @@ const ChatPage = () => {
                 </section>
 
                 {/* Chat area */}
-                <section className="flex-1 min-w-[65vw] flex flex-col bg-gray-50">
+                <section className="flex-1 min-w-[60vw] flex flex-col bg-gray-50">
                     {selectedProfile ? (
                         <>
                             {/* Header */}
