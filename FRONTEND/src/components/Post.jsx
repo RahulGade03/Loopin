@@ -183,7 +183,7 @@ const Post = ({ post }) => {
         <img
           src={post.image}
           alt="Post"
-          className="w-full object- max-h-[60vh]"
+          className="w-full max-h-[60vh]"
         />
       </div>
 

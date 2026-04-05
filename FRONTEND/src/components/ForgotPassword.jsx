@@ -47,54 +47,89 @@ const ForgotPassword = () => {
 
     return (
         <>
-            <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-                {/* Animated Background Layer */}
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-yellow-300 to-purple-500 bg-[length:200%_200%] animate-gradientMove z-0"></div>
+            <div className="min-h-screen flex">
 
-                {/* Login Form */}
-                <form
-                    onSubmit={submitHandler}
-                    className="relative z-10 bg-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl p-8 w-full max-w-md"
-                >
-                    <div className="text-center mb-6">
-                        <div className="text-4xl font-bold text-pink-600 mb-2">🚀</div>
-                        <p className="text-gray-700 text-sm">Forgot Password!</p>
-                    </div>
-
-                    <div className="space-y-5">
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-1">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={email}
-                                onChange={(e) => { setEmail(e.target.value.trim()) }}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            />
+                {/* LEFT PANEL */}
+                <div className="w-[35%] min-h-screen bg-gradient-to-b from-black to-gray-900 flex items-center justify-center px-8">
+                    <form
+                        onSubmit={submitHandler}
+                        className="w-full max-w-md text-white"
+                    >
+                        {/* Branding */}
+                        <div className="mb-10 flex flex-col items-center">
+                            <img src='../public/Loopin_brand_logo.png' className='w-2xs'/>
+                            <p className="text-gray-400 mt-2 text-sm">
+                                Reset your password
+                            </p>
                         </div>
 
-                        <div className="pt-3">
-                            {
-                                loading ? (
-                                    <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 cursor-not-allowed" disabled>
-                                        Please wait...
-                                    </button>
-                                ) : (
-                                    <button type='submit' className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
-                                        Send Email
-                                    </button>
-                                )
-                            }
-                            <div className='text-center mt-3'> <Link to={'/signup'} className='text-blue-400'>Create account</Link></div>
+                        <div className="space-y-6">
+
+                            {/* Email */}
+                            <div>
+                                <label className="block text-sm text-gray-300 mb-2">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value.trim())}
+                                    placeholder="Enter your email"
+                                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500"
+                                />
+                            </div>
+
+                            {/* Button */}
+                            <div className="pt-4">
+                                {
+                                    loading ? (
+                                        <button
+                                            className="w-full bg-gray-600 text-white font-semibold py-3 rounded-lg cursor-not-allowed"
+                                            disabled
+                                        >
+                                            Please wait...
+                                        </button>
+                                    ) : (
+                                        <button
+                                            type="submit"
+                                            className="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-200 transition"
+                                        >
+                                            Send Email
+                                        </button>
+                                    )
+                                }
+
+                                {/* Links */}
+                                <div className="flex justify-center text-sm text-gray-400 mt-4 text-center">
+                                    <p>Surf through the world! <Link to="/login" className="transition hover:text-white">Login</Link></p>
+                                </div>
+
+                                {/* Success Message */}
+                                {isSuccess && (
+                                    <p className="text-green-400 text-sm text-center mt-4">
+                                        Email sent to your mail address!
+                                    </p>
+                                )}
+                            </div>
+
                         </div>
-                    </div>
-                </form>
-                {isSuccess && <div>Email sent to your mail address!</div>}
+                    </form>
+                </div>
+
+                {/* RIGHT PANEL (Same bright energetic image) */}
+                <div className="relative w-[65%] hidden md:block">
+                    <img
+                        src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf"
+                        alt="Friends celebrating"
+                        className="w-full h-screen object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/10"></div>
+                </div>
+
             </div>
         </>
-    )
+    );
 }
 
 export default ForgotPassword;

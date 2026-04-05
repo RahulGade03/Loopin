@@ -58,73 +58,115 @@ const Signup = () => {
     }
 
     return (
-        <>
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-400 via-yellow-300 to-purple-400 px-4">
-                <form onSubmit={signupHandler} className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
-                    <div className="text-center mb-6">
-                        <div className="text-4xl font-bold text-pink-600 mb-2">🚀</div>
-                        <p className="text-gray-700 text-sm">Explore a new world here!</p>
-                    </div>
+  <>
+    <div className="min-h-screen flex">
 
-                    <div className="space-y-5">
-                        <div>
-                            <label htmlFor="username" className="block text-sm font-semibold text-gray-800 mb-1">
-                                Username
-                            </label>
-                            <input
-                                type="text"
-                                name="username"
-                                value={input.username}
-                                onChange={changeEventHandler}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-                            />
-                        </div>
+      {/* LEFT PANEL */}
+      <div className="w-[35%] min-h-screen bg-gradient-to-b from-black to-gray-900 flex items-center justify-center px-8">
+        <form
+          onSubmit={signupHandler}
+          className="w-full max-w-md text-white"
+        >
+          {/* Branding */}
+          <div className="mb-10 flex flex-col items-center">
+            <img src='../public/Loopin_brand_logo.png' className='w-2xs'/>
+            <p className="text-gray-400 mt-2 text-sm">
+              Create your account and get started.
+            </p>
+          </div>
 
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-1">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={input.email}
-                                onChange={changeEventHandler}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                            />
-                        </div>
+          <div className="space-y-2">
 
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-semibold text-gray-800 mb-1">
-                                Password
-                            </label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={input.password}
-                                onChange={changeEventHandler}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-                            />
-                        </div>
-
-                        <div className="pt-3">
-                            {
-                                loading ? (
-                                    <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
-                                        Please wait...
-                                    </button>
-                                ) : (
-                                    <button type='submit' className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
-                                        Sign Up
-                                    </button>
-                                )
-                            }
-                            <div className='text-center mt-3'>Already have an account? <Link to='/login' className='text-blue-500'>Login</Link></div>
-                        </div>
-                    </div>
-                </form>
+            {/* Username */}
+            <div>
+              <label className="block text-sm text-gray-300 mb-1">
+                Username
+              </label>
+              <input
+                type="text"
+                name="username"
+                value={input.username}
+                onChange={changeEventHandler}
+                placeholder="Enter your username"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500"
+              />
             </div>
-        </>
-    );
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm text-gray-300 mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={input.email}
+                onChange={changeEventHandler}
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500"
+              />
+            </div>
+
+            {/* Password */}
+            <div>
+              <label className="block text-sm text-gray-300 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                value={input.password}
+                onChange={changeEventHandler}
+                placeholder="Create a password"
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500"
+              />
+            </div>
+
+            {/* Button */}
+            <div className="pt-4">
+              {
+                loading ? (
+                  <button
+                    className="w-full bg-gray-600 text-white font-semibold py-3 rounded-lg cursor-not-allowed"
+                    disabled
+                  >
+                    Please wait...
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-200 transition"
+                  >
+                    Sign Up
+                  </button>
+                )
+              }
+
+              {/* Links */}
+              <div className="text-sm text-gray-400 mt-4 text-center">
+                Already have an account?{" "}
+                <Link to="/login" className="hover:text-white">
+                  Login
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      {/* RIGHT PANEL (Different Image) */}
+      <div className="w-[65%] hidden md:block">
+        <img
+          src="https://cdn6.dissolve.com/p/D2012_182_060/D2012_182_060_1200.jpg"
+          alt="People connecting"
+          className="w-full h-screen object-cover"
+        />
+      </div>
+
+    </div>
+  </>
+);
 }
 
 export default Signup;

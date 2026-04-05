@@ -73,8 +73,8 @@ const LeftSideBar = () => {
         }
     }
     return (
-        <div className="fixed top-0 left-0 min-h-screen w-[15vw] max-w-[250px] bg-white border-r border-gray-200 p-6 flex flex-col shadow-lg">
-            <h2 className="text-6xl pl-2 mb-4">🚀</h2>
+        <div className="fixed top-0 left-0 min-h-screen w-[20vw] max-w-[250px] bg-white border-r border-gray-200 p-6 flex flex-col items-center shadow-lg">
+            <img src="/logo.svg" alt=""  className='rounded-3xl h-35 object-cover top-0 left-0'/>
 
             <div className="flex flex-col space-y-4">
                 {items.map((item, index) => (
@@ -83,7 +83,7 @@ const LeftSideBar = () => {
                         onClick={() => mapHandler(item.text)}
                         className="flex items-center space-x-4 p-3 rounded-xl hover:bg-pink-100 cursor-pointer transition-colors"
                     >
-                        <div className="text-pink-600">{item.icon}</div>
+                        <div className="text-black">{item.icon}</div>
                         <div className="text-gray-800 font-medium">{item.text}</div>
                     </div>
                 ))}

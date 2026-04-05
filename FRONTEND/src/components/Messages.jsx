@@ -22,7 +22,7 @@ const Messages = () => {
                             <div className={`
                                 px-4 py-2 max-w-xs break-words text-sm rounded-lg shadow 
                                 ${isSender 
-                                    ? 'bg-blue-500 text-white rounded-br-none' 
+                                    ? 'bg-black text-white rounded-br-none' 
                                     : 'bg-white text-gray-800 rounded-bl-none'}
                             `}>
                                 {msg.message}

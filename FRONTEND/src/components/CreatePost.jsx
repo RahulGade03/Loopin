@@ -99,7 +99,7 @@ const CreatePost = ({ open, setOpen }) => {
                     {!imagePreview ? (
                         <button
                             onClick={() => fileRef.current.click()}
-                            className="px-6 py-3 rounded-lg bg-blue-600 text-white text-base font-semibold hover:bg-blue-700 transition"
+                            className="px-6 py-3 rounded-lg bg-gray-950 text-white text-base font-semibold hover:bg-blue-700 transition"
                         >
                             Select from computer
                         </button>
@@ -107,7 +107,7 @@ const CreatePost = ({ open, setOpen }) => {
                         <>
                             <button
                                 onClick={sendPostHandler}
-                                className="px-6 py-3 rounded-lg bg-blue-600 text-white text-base font-semibold hover:bg-blue-700 transition"
+                                className="px-6 py-3 rounded-lg bg-gray-950 text-white text-base font-semibold hover:bg-blue-700 transition"
                             >
                                 {loading ? "Posting..." : "Post"}
                             </button>

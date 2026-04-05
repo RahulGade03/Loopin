@@ -114,10 +114,10 @@ const ChatPage = () => {
                                     value={textMessage}
                                     onChange={(e) => { setTextMessage(e.target.value) }}
                                     type="text" autoFocus
-                                    className="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
                                     placeholder="Type a message…"
                                 />
-                                <button type='submit' className="px-4 py-2 rounded-full bg-indigo-600 text-white font-medium hover:bg-indigo-700">
+                                <button type='submit' className="px-4 py-2 rounded-full bg-gray-950 transition-all text-white font-medium hover:bg-indigo-600">
                                     Send
                                 </button>
                             </form>

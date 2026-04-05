@@ -89,7 +89,7 @@ const Profile = () => {
     <div className="max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
       {/* Profile header */}
       <div className="flex flex-col sm:flex-row items-center gap-6 border-b pb-8 mb-10">
-        <Avatar className="w-28 h-28 sm:w-32 sm:h-32 rounded-full ring-4 ring-offset-2 ring-pink-400 shadow-md overflow-hidden">
+        <Avatar className="w-28 h-28 sm:w-32 sm:h-32 rounded-full ring-2 ring-offset-2 ring-gray-900 transition duration-500 hover:ring-pink-500 shadow-md overflow-hidden">
           <AvatarImage
             src={userProfile.profilePicture}
             className="w-full h-full object-cover"
@@ -107,7 +107,7 @@ const Profile = () => {
 
           {isLoggedInUser ? (
             <Link to={'/editprofile'}>
-              <button className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm transition">
+              <button className="mt-4 inline-block bg-gray-950 hover:bg-blue-600 text-white px-6 py-2 rounded-md text-sm transition duration-500">
                 Edit Profile
               </button>
             </Link>
@@ -128,16 +128,16 @@ const Profile = () => {
 
         <div className="flex flex-col gap-6 text-center sm:text-left">
           <div>
-            <span className="font-semibold text-xl">
+            <span className="font-semibold text-xl text-pink-500">
               {userProfile?.followers?.length || 0}
             </span>
-            <span className="ml-1 text-gray-600 text-xl">followers</span>
+            <span className="ml-1 text-gray-600 text-xl"><i>followers</i></span>
           </div>
           <div>
-            <span className="font-semibold text-xl">
+            <span className="font-semibold text-xl text-pink-500">
               {userProfile.following?.length || 0}
             </span>
-            <span className="ml-1 text-gray-600 text-xl">following</span>
+            <span className="ml-1 text-gray-600 text-xl"><i>following</i></span>
           </div>
         </div>
       </div>

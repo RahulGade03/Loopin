@@ -62,64 +62,99 @@ const Login = () => {
 
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-        {/* Animated Background Layer */}
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-yellow-300 to-purple-500 bg-[length:200%_200%] animate-gradientMove z-0"></div>
+      <div className="min-h-screen flex">
 
-        {/* Login Form */}
-        <form
-          onSubmit={loginHandler}
-          className="relative z-10 bg-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl p-8 w-full max-w-md"
-        >
-          <div className="text-center mb-6">
-            <div className="text-4xl font-bold text-pink-600 mb-2">🚀</div>
-            <p className="text-gray-700 text-sm">Login to the new World!!</p>
-          </div>
-
-          <div className="space-y-5">
-            <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={input.email}
-                onChange={changeEventHandler}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              />
+        {/* LEFT PANEL (Login Form) */}
+        <div className="w-[35vw] min-h-screen bg-gradient-to-b from-black to-gray-900 flex items-center justify-center px-8">
+          <form
+            onSubmit={loginHandler}
+            className="w-full max-w-md text-white"
+          >
+            {/* Branding */}
+            <div className="mb-10 flex flex-col items-center">
+              <img src='../public/Loopin_brand_logo.png' className='w-2xs'/>
+              <p className="text-gray-400 mt-2 text-sm">
+                Welcome back! Login to continue.
+              </p>
             </div>
 
-            <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-800 mb-1">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                value={input.password}
-                onChange={changeEventHandler}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-              />
-            </div>
+            <div className="space-y-6">
+              {/* Email */}
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={input.email}
+                  onChange={changeEventHandler}
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500"
+                />
+              </div>
 
-            <div className="pt-3">
-              {
-                loading ? (
-                  <button className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200 cursor-not-allowed" disabled>
-                    Please wait...
-                  </button>
-                ) : (
-                  <button type='submit' className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition duration-200">
-                    Login
-                  </button>
-                )
-              }
-              <div className='text-center mt-3'> <Link to={'/signup'} className='text-blue-400'>Create account</Link></div>
-              <div className='text-center mt-3'> <Link to={'/forgot-password'} className='text-blue-400'>Forgot Password</Link></div>
+              {/* Password */}
+              <div>
+                <label className="block text-sm text-gray-300 mb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  value={input.password}
+                  onChange={changeEventHandler}
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-500"
+                />
+              </div>
+
+              {/* Button */}
+              <div className="pt-4">
+                {
+                  loading ? (
+                    <button
+                      className="w-full bg-gray-600 text-white font-semibold py-3 rounded-lg cursor-not-allowed"
+                      disabled
+                    >
+                      Please wait...
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      className="w-full bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-200 transition"
+                    >
+                      Login
+                    </button>
+                  )
+                }
+
+                {/* Links */}
+                <div className='flex items-center justify-around'>
+                  <div className="text-sm text-gray-400 mt-4 text-center">
+                    <Link to="/signup" className="hover:text-white">
+                      Create account
+                    </Link>
+                  </div>
+                  <div className="text-sm text-gray-400 mt-4 text-center">
+                    <Link to="/forgot-password" className="hover:text-white">
+                      Forgot Password
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
+
+        {/* RIGHT PANEL (Image Section) */}
+        <div className="w-[65%] hidden md:block">
+          <img
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
+            alt="Happy people"
+            className="w-full h-screen object-cover"
+          />
+        </div>
       </div>
     </>
   );
