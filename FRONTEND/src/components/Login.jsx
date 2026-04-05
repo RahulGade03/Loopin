@@ -72,7 +72,7 @@ const Login = () => {
           >
             {/* Branding */}
             <div className="mb-10 flex flex-col items-center">
-              <img src='/Loopin_brand_logo.png' className='w-2xs'/>
+              <img src='/LoopIn_brand_logo.png' className='w-2xs'/>
               <p className="text-gray-400 mt-2 text-sm">
                 Welcome back! Login to continue.
               </p>
