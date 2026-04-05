@@ -57,7 +57,7 @@ const ForgotPassword = () => {
                     >
                         {/* Branding */}
                         <div className="mb-10 flex flex-col items-center">
-                            <img src='../public/Loopin_brand_logo.png' className='w-2xs'/>
+                            <img src='../public/LoopIn_brand_logo.png' className='w-2xs'/>
                             <p className="text-gray-400 mt-2 text-sm">
                                 Reset your password
                             </p>
