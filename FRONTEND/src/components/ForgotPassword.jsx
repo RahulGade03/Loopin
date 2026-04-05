@@ -57,7 +57,7 @@ const ForgotPassword = () => {
                     >
                         {/* Branding */}
                         <div className="mb-10 flex flex-col items-center">
-                            <img src='../public/LoopIn_brand_logo.png' className='w-2xs'/>
+                            <img src='/LoopIn_brand_logo.png' className='w-2xs'/>
                             <p className="text-gray-400 mt-2 text-sm">
                                 Reset your password
                             </p>
@@ -120,7 +120,7 @@ const ForgotPassword = () => {
                 {/* RIGHT PANEL (Same bright energetic image) */}
                 <div className="relative w-[65%] hidden md:block">
                     <img
-                        src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf"
+                        src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg"
                         alt="Friends celebrating"
                         className="w-full h-screen object-cover"
                     />
