@@ -120,7 +120,7 @@ const ForgotPassword = () => {
                 {/* RIGHT PANEL (Same bright energetic image) */}
                 <div className="relative w-[65%] hidden md:block">
                     <img
-                        src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg"
+                        src="https://wallpapercat.com/w/full/c/e/7/198478-2560x2048-desktop-hd-puppy-background.jpg"
                         alt="Friends celebrating"
                         className="w-full h-screen object-cover"
                     />
